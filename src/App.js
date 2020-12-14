@@ -7,9 +7,11 @@ import {
 
 import './App.css';
 import React from 'react';
-import Email from './components/EmailPage';
+//import Email from './components/Inbox';
 import styled from 'styled-components';
-import EmailDetail from './components/EmailDetail';
+//import EmailDetail from './components/EmailDetail';
+import Home from './components/Home';
+import Inbox from './components/Inbox'
 
 
 const PageWrapper = styled.div`
@@ -52,22 +54,22 @@ class App extends React.Component{
       <Router>
         <section>
           <h1 className='App'>INBOX</h1>
-          {this.state.emails.map(elemets => {
-              return <Wrap>
-                  <br />
-                  <Content>Subject: <Link to='/EmailDetail'>{elemets.subject}</Link></Content>
-                  <Content>Sender: {elemets.sender}</Content>
-                  <br />
-              </Wrap>
-          })
-          }
-      </section>
+          <Wrap>
+            <br />
+            <Content><Link to='/'>Home</Link></Content>
+            <Content><Link to='/Inbox'>Inbox</Link></Content>
+            <br />
+          </Wrap>   
+        </section>
 
-      <Switch>
-        <Route exact path='/EmailDetail'>
-          <EmailDetail />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route exact path='/'>
+              <Home />
+            </Route>
+          <Route path='/Inbox'>
+            <Inbox emaillist={this.state.emails} />
+          </Route>
+        </Switch>
     </Router>
     );
   }
